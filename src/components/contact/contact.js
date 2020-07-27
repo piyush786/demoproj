@@ -37,6 +37,7 @@ handleSubmit(ev) {
             <h1>Contact</h1>
             <h5>What is Lorem Ipsum?
             <br/>
+              {JSON.stringify(this.props.productData)}
               firstname: {this.state.firstname} <br/>
               lastname: {this.state.lastname} <br/>
               message: {this.state.message} <br/>
@@ -78,9 +79,18 @@ handleSubmit(ev) {
 }
 
 const mapStateToProps = (state,ownProps) => {
+  return { productData : state.contactReducer.productData }
 }
 
 
 const mapDispatchToProps = { disptachContactData }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contact);
+
+
+
+
+/*
+
+(mapDispatchToProps)component disptahc(action1) => saga   put(action2) =>   store   => component(mapStateToProps)
+*/

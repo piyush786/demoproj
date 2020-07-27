@@ -7,10 +7,17 @@ import About from './components/about/about';
 import Services from './components/services/services';
 import Contact from './components/contact/contact';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore , applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
 import rootReducer from '../src/redux/rootRedux'
-const store = createStore(rootReducer)
+import rootSaga from '../src/redux/rootSaga'
+
+
+const  sagaMidleware = createSagaMiddleware();
+const store = createStore(rootReducer, applyMiddleware(sagaMidleware))
+sagaMidleware.run(rootSaga)
+
 
 function App() {
   return (
